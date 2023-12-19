@@ -29,9 +29,11 @@
 ||[1590. 使数组和能被 P 整除](https://leetcode.cn/problems/make-sum-divisible-by-p/)|[【套路】前缀和+哈希表+模运算技巧](https://leetcode.cn/problems/make-sum-divisible-by-p/solution/tao-lu-qian-zhui-he-ha-xi-biao-pythonjav-rzl0/)|2039|
 |差分数组|[1094. 拼车](https://leetcode.cn/problems/car-pooling/)|[【模板讲解】差分数组](https://leetcode.cn/problems/car-pooling/solution/suan-fa-xiao-ke-tang-chai-fen-shu-zu-fu-9d4ra/)|1441|
 ||[2251. 花期内花的数目](https://leetcode.cn/problems/number-of-flowers-in-full-bloom/)|[两种方法：二分/差分](https://leetcode.cn/problems/number-of-flowers-in-full-bloom/solution/chai-fen-pythonjavacgo-by-endlesscheng-wz35/)|2022|
+||[2132. 用邮票贴满网格图](https://leetcode.cn/problems/stamping-the-grid/)|[【图解】从一维差分到二维差分](https://leetcode.cn/problems/stamping-the-grid/solution/wu-nao-zuo-fa-er-wei-qian-zhui-he-er-wei-zwiu/)|2364|
 |单调栈|[1019. 链表中的下一个更大节点](https://leetcode.cn/problems/next-greater-node-in-linked-list/)|[【图解单调栈】两种方法，两张图秒懂！](https://leetcode.cn/problems/next-greater-node-in-linked-list/solution/tu-jie-dan-diao-zhan-liang-chong-fang-fa-v9ab/)|1571|
 ||[1124. 表现良好的最长时间段](https://leetcode.cn/problems/longest-well-performing-interval/)|[【图解】两种做法，两张图秒懂！](https://leetcode.cn/problems/longest-well-performing-interval/solution/liang-chong-zuo-fa-liang-zhang-tu-miao-d-hysl/)|1908|
 ||[907. 子数组的最小值之和](https://leetcode.cn/problems/sum-of-subarray-minimums/)|[【图解】贡献法+单调栈+三种实现版本](https://leetcode.cn/problems/sum-of-subarray-minimums/solution/gong-xian-fa-dan-diao-zhan-san-chong-shi-gxa5/)|1976|
+||[2454. 下一个更大元素 IV](https://leetcode.cn/problems/next-greater-element-iv/)|[O(n) 一次遍历+双单调栈](https://leetcode.cn/problems/next-greater-element-iv/solution/by-endlesscheng-q6t5/)|2175|
 ||[316. 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters/)|[跟着我过一遍示例 2，你就明白怎么做了](https://leetcode.cn/problems/remove-duplicate-letters/solution/gen-zhao-wo-guo-yi-bian-shi-li-2ni-jiu-m-zd6u)|2185|
 |单调队列|[862. 和至少为 K 的最短子数组](https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/)|[【图解】两张图秒懂单调队列](https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/solution/liang-zhang-tu-miao-dong-dan-diao-dui-li-9fvh/)|2307|
 |优先队列/堆|[2558. 从数量最多的堆取走礼物](https://leetcode.cn/problems/take-gifts-from-the-richest-pile/)|[【证明】堆化的时间复杂度](https://leetcode.cn/problems/take-gifts-from-the-richest-pile/solution/yuan-di-dui-hua-o1-kong-jian-fu-ti-dan-p-fzdh/)|1277|
@@ -43,15 +45,18 @@
 ||[260. 只出现一次的数字 III](https://leetcode.cn/problems/single-number-iii/)|[【图解】一张图秒懂！转换成 136！](https://leetcode.cn/problems/single-number-iii/solution/tu-jie-yi-zhang-tu-miao-dong-zhuan-huan-np9d2/)|中等|
 ||[421. 数组中两个数的最大异或值](https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/)|[【图解】简洁高效，一图秒懂！](https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/solution/tu-jie-jian-ji-gao-xiao-yi-tu-miao-dong-1427d/)|中等|
 |贡献法|[979. 在二叉树中分配硬币](https://leetcode.cn/problems/distribute-coins-in-binary-tree/)|[【图解】没有思路？进来秒懂！](https://leetcode.cn/problems/distribute-coins-in-binary-tree/solution/tu-jie-mei-you-si-lu-jin-lai-miao-dong-p-vrni/)|1709|
+||[2477. 到达首都的最少油耗](https://leetcode.cn/problems/minimum-fuel-cost-to-report-to-the-capital/)|[【图解】没有思路？一张图秒懂！](https://leetcode.cn/problems/minimum-fuel-cost-to-report-to-the-capital/solution/kao-lu-mei-tiao-bian-shang-zhi-shao-xu-y-uamv/)|2012|
 ||[891. 子序列宽度之和](https://leetcode.cn/problems/sum-of-subsequence-widths/)|[【图解】计算每个元素对答案的贡献，多解法](https://leetcode.cn/problems/sum-of-subsequence-widths/solution/by-endlesscheng-upd1/)|2183|
-|动态规划|[剑指 Offer 47. 礼物的最大价值](https://leetcode.cn/problems/li-wu-de-zui-da-jie-zhi-lcof/)|[【图解】教你一步步思考动态规划！](https://leetcode.cn/problems/li-wu-de-zui-da-jie-zhi-lcof/solution/jiao-ni-yi-bu-bu-si-kao-dpcong-hui-su-da-epvl/)|中等|
+|动态规划|[746. 使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)|[教你一步步思考动态规划！](https://leetcode.cn/problems/min-cost-climbing-stairs/solution/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-j99e/)|1358|
+||[剑指 Offer 47. 礼物的最大价值](https://leetcode.cn/problems/li-wu-de-zui-da-jie-zhi-lcof/)|[【图解】教你一步步思考动态规划！](https://leetcode.cn/problems/li-wu-de-zui-da-jie-zhi-lcof/solution/jiao-ni-yi-bu-bu-si-kao-dpcong-hui-su-da-epvl/)|中等|
 ||[931. 下降路径最小和](https://leetcode.cn/problems/minimum-falling-path-sum/)|[教你一步步思考动态规划！](https://leetcode.cn/problems/minimum-falling-path-sum/solution/cong-di-gui-dao-di-tui-jiao-ni-yi-bu-bu-2cwkb/)|1573|
-||[1155. 掷骰子等于目标和的方法数](https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/)|[【击败 100%】教你一步步思考动态规划！](https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/solution/ji-bai-100cong-ji-yi-hua-sou-suo-dao-di-421ab/)|1654|
+||[1155. 掷骰子等于目标和的方法数](https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/)|[击败 100%！教你一步步思考动态规划！](https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/solution/ji-bai-100cong-ji-yi-hua-sou-suo-dao-di-421ab/)|1654|
 ||[2304. 网格中的最小路径代价](https://leetcode.cn/problems/minimum-path-cost-in-a-grid/)|[教你一步步思考动态规划！](https://leetcode.cn/problems/minimum-path-cost-in-a-grid/solution/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-bd25/)|1658|
 ||[1262. 可被三整除的最大和](https://leetcode.cn/problems/greatest-sum-divisible-by-three/)|[教你一步步思考动态规划！](https://leetcode.cn/problems/greatest-sum-divisible-by-three/solution/liang-chong-suan-fa-tan-xin-dong-tai-gui-tsll/)|1762|
 ||[918. 环形子数组的最大和](https://leetcode.cn/problems/maximum-sum-circular-subarray/)|[【图解】没有思路？一张图秒懂！](https://leetcode.cn/problems/maximum-sum-circular-subarray/solution/mei-you-si-lu-yi-zhang-tu-miao-dong-pyth-ilqh/)|1777|
 ||[1186. 删除一次得到子数组最大和](https://leetcode.cn/problems/maximum-subarray-sum-with-one-deletion/)|[教你一步步思考动态规划！](https://leetcode.cn/problems/maximum-subarray-sum-with-one-deletion/solution/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-hzz6/)|1799|
 ||[790. 多米诺和托米诺平铺](https://leetcode.cn/problems/domino-and-tromino-tiling/)|[【图解】找不到规律？请看图！](https://leetcode.cn/problems/domino-and-tromino-tiling/solution/by-endlesscheng-umpp/)|1830|
+||[2008. 出租车的最大盈利](https://leetcode.cn/problems/maximum-earnings-from-taxi/)|[教你一步步思考动态规划！](https://leetcode.cn/problems/maximum-earnings-from-taxi/solution/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-k15a/)|1872|
 ||[823. 带因子的二叉树](https://leetcode.cn/problems/binary-trees-with-factors/)|[教你一步步思考动态规划！](https://leetcode.cn/problems/binary-trees-with-factors/solution/cong-ji-yi-hua-sou-suo-dao-di-tui-jiao-n-nbk6/)|1900|
 ||[1043. 分隔数组以得到最大和](https://leetcode.cn/problems/partition-array-for-maximum-sum/)|[教你一步步思考动态规划！](https://leetcode.cn/problems/partition-array-for-maximum-sum/solution/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-rq5i/)|1916|
 ||[1092. 最短公共超序列](https://leetcode.cn/problems/shortest-common-supersequence/)|[【输出具体方案】从递归到递推，教你一步步思考动态规划！](https://leetcode.cn/problems/shortest-common-supersequence/solution/cong-di-gui-dao-di-tui-jiao-ni-yi-bu-bu-auy8z/)|1977|
@@ -116,11 +121,8 @@
 
 更多题目请看[【基础算法精讲】题目列表](https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md)
 
-附：
-
 - [从集合论到位运算，常见位运算技巧分类总结！](https://leetcode.cn/circle/discuss/CaOJ45/)
 - [【简单题杀手】分组循环](https://leetcode.cn/problems/longest-even-odd-subarray-with-threshold/solution/jiao-ni-yi-ci-xing-ba-dai-ma-xie-dui-on-zuspx/)
-- [差分数组](https://leetcode.cn/circle/discuss/FfMCgb/)
 - [【图解】二维前缀和](https://leetcode.cn/circle/discuss/UUuRex/)
 - [从周赛中学算法 - 2023·上](https://leetcode.cn/circle/discuss/v2RXSN/)
 - [从周赛中学算法 - 2022·下](https://leetcode.cn/circle/discuss/WR1MJP/)
