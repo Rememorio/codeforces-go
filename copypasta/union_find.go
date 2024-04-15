@@ -9,6 +9,12 @@ import (
 只有路径压缩的并查集复杂度是 O(nlogn) 的，这也是大多数情况下的实现方案
 只有启发式合并（按深度合并）的并查集的复杂度也是 O(nlogn) 的，适用于可持久化的场景
 
+只有路径压缩的并查集，可以构造一棵二项树（binomial tree）
+结合图片讲解 https://en.wikipedia.org/wiki/Binomial_heap
+每次把二项树的根节点连到一个新的孤立点上，然后对最深的点调用 find
+这样可以得到一棵几乎一样的树（区别仅仅是根节点多了一个儿子）
+所以，只要重复上述过程，就可以让每次 find 都是 O(logn) 级别的了
+
 具体的时间复杂度证明见《算法导论》
 https://zhuanlan.zhihu.com/p/553192435
 
@@ -27,6 +33,7 @@ https://zhuanlan.zhihu.com/p/553192435
 // 模板题 LC547 https://leetcode.cn/problems/number-of-provinces/
 // LC684 https://leetcode.cn/problems/redundant-connection/
 // LC1267 https://leetcode.cn/problems/count-servers-that-communicate/
+// https://www.luogu.com.cn/problem/P1111
 // https://www.luogu.com.cn/problem/P3367
 // https://atcoder.jp/contests/arc097/tasks/arc097_b
 // 基础题 https://codeforces.com/problemset/problem/1167/C
@@ -57,7 +64,8 @@ https://zhuanlan.zhihu.com/p/553192435
 //
 // LC2503 https://leetcode.cn/problems/maximum-number-of-points-from-grid-queries/
 // 接水问题 https://codeforces.com/problemset/problem/371/D
-// 三维接雨水 https://www.luogu.com.cn/problem/P5930 LC407 https://leetcode-cn.com/problems/trapping-rain-water-ii/
+// LC407 三维接雨水 https://leetcode.cn/problems/trapping-rain-water-ii/
+// - https://www.luogu.com.cn/problem/P5930 
 // 使某些点不在环上需要删除的最少边数 https://ac.nowcoder.com/acm/contest/7780/C
 // todo https://codeforces.com/problemset/problem/292/D
 // 任意合并+区间合并 https://codeforces.com/problemset/problem/566/D
@@ -67,8 +75,8 @@ https://zhuanlan.zhihu.com/p/553192435
 //         https://codeforces.com/problemset/problem/1466/F
 // 前缀和 后缀和 https://codeforces.com/problemset/problem/292/D
 // 维护树或基环树 https://codeforces.com/problemset/problem/859/E
-// 求矩阵的 rank 矩阵 https://codeforces.com/problemset/problem/650/C LC1632 https://leetcode-cn.com/problems/rank-transform-of-a-matrix/submissions/
-// 分组排序套路 LC1998 https://leetcode-cn.com/problems/gcd-sort-of-an-array/
+// 求矩阵的 rank 矩阵 https://codeforces.com/problemset/problem/650/C LC1632 https://leetcode.cn/problems/rank-transform-of-a-matrix/submissions/
+// 分组排序套路 LC1998 https://leetcode.cn/problems/gcd-sort-of-an-array/
 // 套题 https://blog.csdn.net/weixin_43914593/article/details/104108049 算法竞赛专题解析（3）：并查集
 // 转换 https://codeforces.com/problemset/problem/1253/D
 // 离散 + 四方向 Kick Start 2019 Round C Wiggle Walk https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2/0000000000150aac#analysis
@@ -153,8 +161,10 @@ func _(n int) {
 	}
 
 	{
-		// 离散化版本
+		// 哈希表版本离散化版本
 		// LC947 https://leetcode.cn/problems/most-stones-removed-with-same-row-or-column/
+		// https://codeforces.com/problemset/problem/506/D 2400
+		// class 版本见 https://codeforces.com/problemset/submission/506/247878263
 		fa := map[int]int{}
 		groups := 0
 		var find func(int) int
@@ -186,6 +196,10 @@ func _(n int) {
 		_ = merge
 	}
 
+	// 区间并查集 / 涂色并查集 / 刷墙并查集
+	// LC1851 https://leetcode.cn/problems/minimum-interval-to-include-each-query/ 2286
+	// LC2158 https://leetcode.cn/problems/amount-of-new-area-painted-each-day/
+	// https://codeforces.com/problemset/problem/724/D
 	mergeRangeTo := func(l, r, to int) { // 常用：to=r+1，这时建议用左闭右开表示区间
 		//if l < 0 {
 		//	l = 0
@@ -291,7 +305,7 @@ func moveRobot(start ufPoint, command string) ufPoint {
 // https://codeforces.com/edu/course/2/lesson/7/1/practice/contest/289390/problem/B
 // https://codeforces.com/problemset/problem/1609/D
 // LC1562 https://leetcode.cn/problems/find-latest-group-of-size-m/
-// 哈希表写法 https://leetcode-cn.com/problems/groups-of-strings/
+// 哈希表写法 https://leetcode.cn/problems/groups-of-strings/
 // https://atcoder.jp/contests/arc107/tasks/arc107_c
 func _(n int) {
 	groups := n
@@ -355,6 +369,7 @@ func _(n int) {
 //      https://codeforces.com/contest/1713/problem/E
 // 边权：https://codeforces.com/edu/course/2/lesson/7/1/practice/contest/289390/problem/C
 // 边权：LC399 除法求值 https://leetcode.cn/problems/evaluate-division/
+//      LC2307 https://leetcode.cn/problems/check-for-contradictions-in-equations/ 也可以 DFS
 // https://codeforces.com/problemset/problem/1788/F
 func _(n int) {
 	// 注：kinds 为 2 时可以用异或来代替加减法

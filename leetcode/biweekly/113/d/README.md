@@ -1,6 +1,6 @@
-[视频讲解](https://b23.tv/MRNaADm) 第四题。
+[视频讲解](https://www.bilibili.com/video/BV1PV411N76R/) 第四题。
 
-关于换根 DP 的原理，推荐看 834. 树中距离之和的[【图解】一张图秒懂换根 DP！](https://leetcode.cn/problems/sum-of-distances-in-tree/solution/tu-jie-yi-zhang-tu-miao-dong-huan-gen-dp-6bgb/)
+换根 DP 原理：[【图解】一张图秒懂换根 DP！](https://leetcode.cn/problems/sum-of-distances-in-tree/solution/tu-jie-yi-zhang-tu-miao-dong-huan-gen-dp-6bgb/)
 
 本题可以先计算出以 $0$ 为根时的答案：在建图的时候，对于一条 $x\rightarrow y$ 的边，把 $(y,1)$ 加到 $x$ 的邻居，把 $(x,-1)$ 加到 $y$ 的邻居，从而可以在递归过程中统计有多少条边是需要反向的。
 
@@ -80,34 +80,38 @@ class Solution {
 
 ```cpp [sol-C++]
 class Solution {
+    vector<vector<pair<int, int>>> g;
+    vector<int> ans;
+
+    void dfs(int x, int fa) {
+        for (auto &[y, dir] : g[x]) {
+            if (y != fa) {
+                ans[0] += dir < 0;
+                dfs(y, x);
+            }
+        }
+    }
+
+    void reroot(int x, int fa) {
+        for (auto &[y, dir] : g[x]) {
+            if (y != fa) {
+                ans[y] = ans[x] + dir; // dir 就是从 x 换到 y 的「变化量」
+                reroot(y, x);
+            }
+        }
+    }
+
 public:
     vector<int> minEdgeReversals(int n, vector<vector<int>> &edges) {
-        vector<vector<pair<int, int>>> g(n);
-        for (auto &e: edges) {
+        g.resize(n);
+        for (auto &e : edges) {
             int x = e[0], y = e[1];
             g[x].emplace_back(y, 1);
             g[y].emplace_back(x, -1); // 从 y 到 x 需要反向
         }
 
-        vector<int> ans(n, 0);
-        function<void(int, int)> dfs = [&](int x, int fa) {
-            for (auto &[y, dir]: g[x]) {
-                if (y != fa) {
-                    ans[0] += dir < 0;
-                    dfs(y, x);
-                }
-            }
-        };
+        ans.resize(n);
         dfs(0, -1);
-
-        function<void(int, int)> reroot = [&](int x, int fa) {
-            for (auto &[y, dir]: g[x]) {
-                if (y != fa) {
-                    ans[y] = ans[x] + dir; // dir 就是从 x 换到 y 的「变化量」
-                    reroot(y, x);
-                }
-            }
-        };
         reroot(0, -1);
         return ans;
     }

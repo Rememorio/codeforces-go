@@ -1,19 +1,18 @@
 package main
 
+import "slices"
+
 // https://space.bilibili.com/206214
 func finalString(s string) string {
-	qs := [2][]rune{}
+	q := [2][]rune{}
 	dir := 1
 	for _, c := range s {
 		if c == 'i' {
-			dir ^= 1
+			dir ^= 1 // 修改添加方向
 		} else {
-			qs[dir] = append(qs[dir], c)
+			q[dir] = append(q[dir], c)
 		}
 	}
-	q := qs[dir^1]
-	for i, n := 0, len(q); i < n/2; i++ {
-		q[i], q[n-1-i] = q[n-1-i], q[i]
-	}
-	return string(append(q, qs[dir]...))
+	slices.Reverse(q[dir^1])
+	return string(append(q[dir^1], q[dir]...))
 }

@@ -1,6 +1,6 @@
 [视频讲解](https://www.bilibili.com/video/BV1yu4y1z7sE/) 第四题。
 
-![w364D-c.png](https://pic.leetcode.cn/1695525563-NYpzGx-w364D-c.png)
+![w364D-2-c.png](https://pic.leetcode.cn/1708991317-yqozUn-w364D-2-c.png)
 
 代码实现时，为避免反复 DFS 同一个非质数连通块，可以把每个非质数所处的连通块的大小记录下来（类似记忆化搜索）。如果之前计算过，就无需再次 DFS。
 
@@ -21,6 +21,7 @@ class Solution:
             g[x].append(y)
             g[y].append(x)
 
+        nodes = []
         def dfs(x: int, fa: int) -> None:
             nodes.append(x)
             for y in g[x]:
@@ -37,7 +38,7 @@ class Solution:
                 if is_prime[y]:
                     continue
                 if size[y] == 0:  # 尚未计算过
-                    nodes = []
+                    nodes.clear()
                     dfs(y, -1)  # 遍历 y 所在连通块，在不经过质数的前提下，统计有多少个非质数
                     for z in nodes:
                         size[z] = len(nodes)
@@ -194,7 +195,7 @@ func countPaths(n int, edges [][]int) (ans int64) {
 	}
 
 	size := make([]int, n+1)
-	var nodes []int
+	nodes := []int{}
 	var dfs func(int, int)
 	dfs = func(x, fa int) {
 		nodes = append(nodes, x)
@@ -214,7 +215,7 @@ func countPaths(n int, edges [][]int) (ans int64) {
 				continue
 			}
 			if size[y] == 0 { // 尚未计算过
-				nodes = []int{}
+				nodes = nodes[:0]
 				dfs(y, -1) // 遍历 y 所在连通块，在不经过质数的前提下，统计有多少个非质数
 				for _, z := range nodes {
 					size[z] = len(nodes)

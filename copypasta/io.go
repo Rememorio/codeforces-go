@@ -34,7 +34,8 @@ func bufferIO() {
 }
 
 // 快读，适用于输入量巨大的题目
-// 相比上面的 bufferIO，每读入 1e6 个 int 可以加速约 400~450ms（Codeforces/AtCoder）
+// 相比上面的 bufferIO，每读入 1e6 个 int 可以加速约 400~450ms（Codeforces/AtCoder）   从字符串的角度来说是 1e7
+// 更快的写法见更下面的 fasterIO
 func fastIO() {
 	in := bufio.NewScanner(os.Stdin)
 	in.Split(bufio.ScanWords)
@@ -129,6 +130,7 @@ func fasterIO() {
 	rc := func() byte {
 		if _i == _n {
 			_n, _ = os.Stdin.Read(buf)
+			// EOF 一定要判断！不判断会 RE：https://codeforces.com/problemset/submission/323/250522741
 			if _n == 0 { // EOF
 				return eof
 			}

@@ -18,34 +18,48 @@ import (
 //    https://ouuan.github.io/post/%E8%8E%AB%E9%98%9F%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F%E8%AF%A6%E8%A7%A3/
 //    https://blog.csdn.net/weixin_43914593/article/details/108485396
 // todo【推荐】文章及题单 https://www.luogu.com.cn/training/2914
+// todo 题单 https://www.luogu.com.cn/training/73984
 // https://cp-algorithms.com/data_structures/sqrt_decomposition.html#toc-tgt-8
 
 // 普通莫队（没有修改操作）
-// 本质是通过巧妙地改变回答询问的顺序，使区间左右端点移动的次数之和由 O(nm) 降至 O(n√m)
-// 在块大小取 n/√m 时可达到最优复杂度 O(n√m)，见 https://www.luogu.com.cn/blog/codesonic/mosalgorithm
+// 本质是通过巧妙地改变回答询问的顺序，使区间左右端点移动的次数由 O(nm) 降至 O(n√m)，其中 n 是数组长度，m 是询问个数
+// 对于每个块，右端点在 [1,n] 中一直向右或者一直向左，而左端点只在块内「抖动」
+// 对于每个块，右端点的移动次数是 O(n)，总移动次数是 O(n * 块个数) = O(n^2 / 块大小)
+// 对于每个询问，左端点移动次数是 O(块大小)，总移动次数是 O(m * 块大小)
+// n^2 / 块大小 = m * 块大小  =>  块大小取 n/√m 时，总的时间复杂度最优，为 O(n√m)
+// 换句话说，回答一个询问的均摊时间复杂度为 O(n/√m)
+// 注 1：如果块大小取 √n，那么移动次数约为 (n+m)√n >= 2n√m，当且仅当 n=m 时取等号（基本不等式），其中不等式右侧为块大小取 n/√m 时的移动次数
+// 注 2：为防止块大小为 0，代码中要取 ceil(n/√m)
+//
 // https://oi-wiki.org/misc/mo-algo/
 // 模板题 https://www.luogu.com.cn/problem/P1494
 // todo https://www.luogu.com.cn/problem/P2709
 // todo https://www.luogu.com.cn/problem/P4462
+//  恰好出现两次 https://www.luogu.com.cn/problem/P7764
+//  https://www.luogu.com.cn/problem/P5673
+//  https://ac.nowcoder.com/acm/problem/25458
+//  至少出现两次 https://ac.nowcoder.com/acm/problem/20545
+//  至少出现 k 次 https://codeforces.com/problemset/problem/375/D
+//  至少出现 k 次 https://www.codechef.com/problems/KCHIPS
+// https://codeforces.com/contest/220/problem/B
 // https://atcoder.jp/contests/abc242/tasks/abc242_g
 // https://atcoder.jp/contests/abc293/tasks/abc293_g
 // 区间 mex https://blog.csdn.net/includelhc/article/details/79593496
 //     反向构造题 https://www.luogu.com.cn/problem/P6852
 // todo https://codeforces.com/contest/86/problem/D
-//      https://codeforces.com/contest/220/problem/B
 //      https://codeforces.com/contest/617/problem/E
 //      https://codeforces.com/contest/877/problem/F
 //      https://www.codechef.com/problems/QCHEF
 func normalMo(a []int, queries [][]int) []int {
 	n := len(a)
-	nq := len(queries)
-	blockSize := int(math.Ceil(float64(n) / math.Sqrt(float64(nq))))
-	type query struct{ lb, l, r, qid int }
-	qs := make([]query, nq)
+	m := len(queries)
+	blockSize := int(math.Ceil(float64(n) / math.Sqrt(float64(m))))
+	type moQuery struct{ lb, l, r, qid int } // [l,r)
+	qs := make([]moQuery, m)
 	for i, q := range queries {
 		// 输入是从 1 开始的
-		l, r := q[0], q[1]
-		qs[i] = query{l / blockSize, l, r + 1, i} // [l,r)
+		l, r := q[0], q[1] // read...
+		qs[i] = moQuery{l / blockSize, l, r + 1, i}
 	}
 	sort.Slice(qs, func(i, j int) bool {
 		a, b := qs[i], qs[j]
@@ -72,13 +86,13 @@ func normalMo(a []int, queries [][]int) []int {
 			cnt--
 		}
 	}
-	getAns := func(q query) int {
+	getAns := func(q moQuery) int {
 		// 提醒：q.r 是加一后的，计算时需要注意
 		// sz := q.r - q.l
 		// ...
 		return cnt
 	}
-	ans := make([]int, nq)
+	ans := make([]int, len(qs))
 	for _, q := range qs {
 		for ; r < q.r; r++ {
 			move(r, 1)
@@ -295,9 +309,9 @@ func moWithRollback(in io.Reader) []int {
 
 // 树上莫队
 // 通过 DFS 序转化成序列上的查询
-// NOTE: 对于带修莫队，去掉 timeSlip 中的参数，且 if l <= p && p < r 替换成 if vis[p] https://www.luogu.com.cn/record/46714923
 // https://oi-wiki.org/misc/mo-algo-on-tree/
 // 有关树分块的内容见 graph_tree.go 中的 limitSizeDecomposition
+// NOTE: 对于带修莫队，去掉 timeSlip 中的参数，且 if l <= p && p < r 替换成 if vis[p] https://www.luogu.com.cn/record/46714923
 // 模板题 糖果公园 https://www.luogu.com.cn/problem/P4074
 //       https://www.acwing.com/problem/content/2536/ https://www.luogu.com.cn/problem/SP10707
 // https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/
@@ -401,7 +415,14 @@ func moOnTree(n, root, q int, g [][]int, vals []int) []int {
 }
 
 // 二次离线莫队
+// 1. 用莫队把询问分块（第一次离线）
+// 2. 把莫队左右指针的移动记录下来（第二次离线）
+// 3. 用（另一种）离线算法，更高效地处理左右指针的移动
+// https://oi-wiki.org/misc/mo-algo-secondary-offline/
+// https://www.cnblogs.com/Nero-Claudius/p/MoQueue1.html
 // todo https://www.luogu.com.cn/blog/gxy001/mu-dui-er-ci-li-xian
 //  https://kewth.github.io/2019/10/16/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/
+//  静态区间逆序对 https://www.luogu.com.cn/problem/P5047
 //  https://www.luogu.com.cn/problem/P4887
+//  https://www.luogu.com.cn/problem/P5501
 //  https://www.luogu.com.cn/problem/P5398

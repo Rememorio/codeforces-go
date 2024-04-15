@@ -12,6 +12,9 @@ import (
 
 /* 其他无法分类的算法 ad-hoc
 
+- [764. 最大加号标志](https://leetcode.cn/problems/largest-plus-sign/) 1753
+最大子矩形 https://www.luogu.com.cn/problem/P1578
+
 倒数平方根 https://www.bilibili.com/video/BV17N41167dR/
 
 小奥
@@ -21,7 +24,9 @@ https://codeforces.com/problemset/problem/700/A
 Maximal number of chess queens that can be placed on a 3-dimensional chessboard of order n so that no two queens attack each other
 
 Smallest positive integer k such that n = +-1+-2+-...+-k for some choice of +'s and -'s https://oeis.org/A140358
-相关题目 https://codeforces.com/problemset/problem/1278/B
+https://codeforces.com/problemset/problem/11/B
+https://codeforces.com/problemset/problem/1278/B
+LC754 https://leetcode.cn/problems/reach-a-number/ 1880
 
 Numbers n such that n is the substring identical to the least significant bits of its base 2 representation.
 https://oeis.org/A181891
@@ -54,6 +59,9 @@ https://www.acwing.com/problem/content/description/98/
 
 麻将
 2021·昆明 https://ac.nowcoder.com/acm/contest/12548/K
+
+五子棋
+https://codeforces.com/contest/825/problem/B
 
 调度场算法 shunting-yard algorithm
 中缀转后缀
@@ -383,7 +391,7 @@ func miscCollection() {
 // b 是 a 的一个排列（允许有重复元素）
 // 返回 b 中各个元素在 a 中的下标（重复的元素顺序保持一致）
 // 可用于求从 a 变到 b 需要的相邻位元素交换的最小次数，即返回结果的逆序对个数
-// LC1850 https://leetcode-cn.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/
+// LC1850 https://leetcode.cn/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/
 func mapPos(a, b []int) []int {
 	pos := map[int][]int{}
 	for i, v := range a {
@@ -397,12 +405,14 @@ func mapPos(a, b []int) []int {
 	return ids
 }
 
-// 归并排序与逆序对
-// LC 面试题 51 https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
-// EXTRA: LC315 https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/
-//        LC327 https://leetcode-cn.com/problems/count-of-range-sum/
-//        LC493 https://leetcode-cn.com/problems/reverse-pairs/
-// 一张关于归并排序的好图 https://www.cnblogs.com/chengxiao/p/6194356.html
+/* 归并排序与逆序对
+- 归并排序：[912. 排序数组](https://leetcode.cn/problems/sort-an-array/)
+- [LCR 170. 交易逆序对的总数](https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)
+- [327. 区间和的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self/)
+- [327. 区间和的个数](https://leetcode.cn/problems/count-of-range-sum/)
+- [493. 翻转对](https://leetcode.cn/problems/reverse-pairs/)
+一张关于归并排序的好图 https://www.cnblogs.com/chengxiao/p/6194356.html
+*/
 func mergeCount(a []int) int {
 	n := len(a)
 	if n <= 1 {
@@ -431,8 +441,8 @@ func mergeCount(a []int) int {
 // Strong conjecture: there is a constant c around 2.54 such that a(n) is asymptotic to n!/c^n
 // Weak conjecture: lim_{n -> infinity} (1/n) * log(n!/a(n)) = constant = 0.90....
 // https://arxiv.org/pdf/2107.13460.pdf
-// LC51 https://leetcode-cn.com/problems/n-queens/
-// LC52 https://leetcode-cn.com/problems/n-queens-ii/
+// LC51 https://leetcode.cn/problems/n-queens/
+// LC52 https://leetcode.cn/problems/n-queens-ii/
 func totalNQueens(n int) (ans int) {
 	var f func(row, columns, diagonals1, diagonals2 int)
 	f = func(row, columns, diagonals1, diagonals2 int) {
@@ -453,7 +463,7 @@ func totalNQueens(n int) (ans int) {
 
 // 格雷码 https://oeis.org/A003188 https://oeis.org/A014550
 // https://en.wikipedia.org/wiki/Gray_code
-// LC89 https://leetcode-cn.com/problems/gray-code/
+// LC89 https://leetcode.cn/problems/gray-code/
 // 转换 https://codeforces.com/problemset/problem/1419/E
 func grayCode(length int) []int {
 	ans := make([]int, 1<<length)
@@ -502,7 +512,7 @@ func countValidSubstring(s string) (ans int) {
 }
 
 // 负二进制数相加
-// LC1073 https://leetcode-cn.com/problems/adding-two-negabinary-numbers/
+// LC1073 https://leetcode.cn/problems/adding-two-negabinary-numbers/
 func addNegabinary(a1, a2 []int) []int {
 	if len(a1) < len(a2) {
 		a1, a2 = a2, a1
@@ -534,7 +544,7 @@ func addNegabinary(a1, a2 []int) []int {
 
 // 负二进制转换
 // https://atcoder.jp/contests/abc105/tasks/abc105_c
-// LC1017 https://leetcode-cn.com/problems/convert-to-base-2/
+// LC1017 https://leetcode.cn/problems/convert-to-base-2/
 func toNegabinary(n int) (ans string) {
 	if n == 0 {
 		return "0"
@@ -556,10 +566,16 @@ func toNegabinary(n int) (ans string) {
 // The periodic part of the decimal expansion of 1/n https://oeis.org/A036275
 // 例如 (2, -3) => ("-0.", "6")
 // b must not be zero
-// LC166 https://leetcode-cn.com/problems/fraction-to-recurring-decimal/
+//
+// https://oeis.org/A007732 Period of decimal representation of 1/n
+// https://oeis.org/A084680 Order of 10 modulo n [i.e., least m such that 10^m = 1 (mod n)] or 0 when no such number exists
+// https://oeis.org/A002329 Periods of reciprocals of integers prime to 10
+//
+// LC166 https://leetcode.cn/problems/fraction-to-recurring-decimal/
 // WF1990 https://www.luogu.com.cn/problem/UVA202
 // 1e12 加强版 https://ac.nowcoder.com/acm/contest/62622/E
 // Python 代码 https://ac.nowcoder.com/acm/contest/view-submission?submissionId=63288994
+// b 进制下是否为有限小数 https://codeforces.com/problemset/problem/983/A 1700
 func fractionToDecimal(a, b int) (beforeCycle, cycle []byte) {
 	if a == 0 {
 		return []byte{'0'}, nil
@@ -619,7 +635,7 @@ func decimalToFraction(decimal string) (a, b int) {
 }
 
 // 表达式计算（无括号）
-// LC227 https://leetcode-cn.com/problems/basic-calculator-ii/
+// LC227 https://leetcode.cn/problems/basic-calculator-ii/
 func calculate(s string) (ans int) {
 	s = strings.ReplaceAll(s, " ", "")
 	v, sign, stack := 0, '+', []int{}
@@ -711,7 +727,7 @@ func minMustPassSum(n, m int, targetCells [][2]int) int {
 }
 
 // 马走日从 (0,0) 到 (x,y) 所需最小步数
-// 无边界 LC1197 https://leetcode-cn.com/problems/minimum-knight-moves/
+// 无边界 LC1197 https://leetcode.cn/problems/minimum-knight-moves/
 // 有边界+打印方案 https://www.acwing.com/problem/content/3527/
 func minKnightMoves(x, y int, abs func(int) int) int {
 	x, y = abs(x), abs(y)
@@ -819,7 +835,7 @@ func minMoveToAllSameInCircle(a []int, abs func(int) int) (ans int) {
 }
 
 // 表达式转表达式树
-// https://leetcode-cn.com/submissions/detail/186220993/
+// https://leetcode.cn/submissions/detail/186220993/
 func parseExpression(s string) {
 	s = strings.TrimSpace(s)
 	type node struct {
@@ -872,7 +888,7 @@ func parseExpression(s string) {
 // https://en.wikipedia.org/wiki/Champernowne_constant
 // https://oeis.org/A033307
 // 返回第 k 位数字
-// https://leetcode-cn.com/contest/espressif-2021/problems/fSghVj/
+// https://leetcode.cn/contest/espressif-2021/problems/fSghVj/
 func champernowneConstant(k int) int {
 	for i, p10 := 1, 10; ; i++ {
 		if i*p10 > k {
@@ -896,14 +912,17 @@ func parseTime(s string) (hour, minute, total int) {
 // 注：这种做法在变形题中容易写错，更加稳定的做法是差分数组
 // - [56. 合并区间](https://leetcode.cn/problems/merge-intervals/)
 // - [55. 跳跃游戏](https://leetcode.cn/problems/jump-game/)
-// - [2580. 统计将重叠区间合并成组的方案数](https://leetcode.cn/problems/count-ways-to-group-overlapping-ranges/)
-// - [2584. 分割数组使乘积互质](https://leetcode.cn/problems/split-the-array-to-make-coprime-products/)
+// - [2580. 统计将重叠区间合并成组的方案数](https://leetcode.cn/problems/count-ways-to-group-overlapping-ranges/) 1632
+// - [2963. 统计好分割方案的数目](https://leetcode.cn/problems/count-the-number-of-good-partitions/) 1985
+// - [2584. 分割数组使乘积互质](https://leetcode.cn/problems/split-the-array-to-make-coprime-products/) 2159
 // - [2655. 寻找最大长度的未覆盖区间](https://leetcode.cn/problems/find-maximal-uncovered-ranges/)（会员题）
+// 另见 common.go 中的「区间贪心」
 // https://codeforces.com/problemset/problem/1859/D
 // https://codeforces.com/problemset/problem/1626/C
 // 倒序合并代码 https://codeforces.com/contest/1626/submission/211306494
-func mergeIntervals(a [][]int) (merged [][]int) {
-	sort.Slice(a, func(i, j int) bool { return a[i][0] < a[j][0] }) // 按区间左端点排序
+func mergeIntervals(a [][]int) [][]int {
+	slices.SortFunc(a, func(a, b []int) int { return a[0] - b[0] }) // 按区间左端点排序
+	merged := [][]int{}
 	l0 := a[0][0]
 	maxR := a[0][1]
 	for _, p := range a[1:] { // 从第二个区间开始
@@ -926,7 +945,7 @@ func mergeIntervals(a [][]int) (merged [][]int) {
 		}
 	}
 
-	return
+	return merged
 }
 
 // 从 i 可以跳到 [i,i+a[i]] 中的任意整点
@@ -934,8 +953,8 @@ func mergeIntervals(a [][]int) (merged [][]int) {
 // 如果无法到达 n-1，返回 -1
 // 注：对于复杂变形题，采用分组循环不易写错
 // - [45. 跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)
-// - [1024. 视频拼接](https://leetcode.cn/problems/video-stitching/)
-// - [1326. 灌溉花园的最少水龙头数目](https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/)
+// - [1024. 视频拼接](https://leetcode.cn/problems/video-stitching/) 1746
+// - [1326. 灌溉花园的最少水龙头数目](https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/) 1885
 // 【图解】https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/solution/yi-zhang-tu-miao-dong-pythonjavacgo-by-e-wqry/
 // 变形 https://codeforces.com/contest/1630/problem/C
 func minJumpNumbers(a []int) (ans int) {

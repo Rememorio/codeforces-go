@@ -5,7 +5,18 @@ import (
 	"math/big"
 )
 
-// https://cp-algorithms.com/algebra/continued-fractions.html
+/*
+https://cp-algorithms.com/algebra/continued-fractions.html
+连分数中的常数 https://mathworld.wolfram.com/ContinuedFractionConstants.html
+https://mathworld.wolfram.com/RamanujanContinuedFractions.html
+https://mathworld.wolfram.com/RegularContinuedFraction.html
+https://mathworld.wolfram.com/GeneralizedContinuedFraction.html
+https://mathworld.wolfram.com/ModifiedBesselFunctionoftheFirstKind.html
+https://mathworld.wolfram.com/ModifiedBesselFunctionoftheSecondKind.html
+https://oeis.org/A001053
+https://oeis.org/A001040
+https://oeis.org/A052119
+*/
 func continuedFractionCollections() {
 	// a/b = [exp[0]; exp[1],...]
 	calcContinuedFraction := func(a, b int) (exp []int) {
@@ -166,7 +177,7 @@ func continuedFractionCollections() {
 	}
 
 	// 将连分数化成最简分数
-	// 模板题 https://leetcode-cn.com/contest/season/2019-fall/problems/deep-dark-fraction/
+	// 模板题 https://leetcode.cn/contest/season/2019-fall/problems/deep-dark-fraction/
 	calcRatByContinuedFraction := func(exp []int) (a, b int) {
 		n := len(exp)
 		h := make([]int, n+2)

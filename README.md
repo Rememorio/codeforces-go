@@ -6,11 +6,10 @@
 
 一个算法模板应当涵盖以下几点：
 - 对该算法的基本介绍（核心思想、复杂度等）
-- 参考链接或书籍章节（讲的比较好的资料）
-- 模板代码（可以包含一些注释、使用说明）
-- 模板补充内容（常见题型中的额外代码、建模技巧等）
-- 相关题目链接（模板题、经典题、思维转换题等）
-
+- 参考链接或书籍章节（讲得比较好的资料）
+- 模板代码（代码注释、使用说明）
+- 模板补充（常见题型中的额外代码、建模技巧等）
+- 相关题目（模板题、经典题、思维转换题等）
 
 ## 算法目录
 
@@ -23,7 +22,11 @@
     - 二维单调队列
   - [双端队列 deque.go](/copypasta/deque.go)
   - [堆（优先队列）heap.go](/copypasta/heap.go)
-    - 支持修改、删除指定元素
+    - 支持修改、删除指定元素的堆
+    - 懒删除堆
+    - 对顶维
+    - 前缀中位数
+    - 滑动窗口前 k 小元素和
   - [并查集 union_find.go](/copypasta/union_find.go)
     - 点权并查集
     - 边权并查集（种类并查集）
@@ -32,6 +35,7 @@
   - [稀疏表（ST 表）sparse_table.go](/copypasta/sparse_table.go)
   - [树状数组 fenwick_tree.go](/copypasta/fenwick_tree.go)
     - 差分树状数组（支持区间加、区间求和）
+    - 二维差分树状数组
     - 树套树 & 三维偏序
   - [线段树 segment_tree.go](/copypasta/segment_tree.go)
     - 线段树二分
@@ -45,6 +49,7 @@
   - [笛卡尔树 cartesian_tree.go](/copypasta/cartesian_tree.go)
   - [二叉搜索树公共方法 bst.go](/copypasta/bst.go)
   - [Treap treap.go](/copypasta/treap.go)
+    - [前 k 小元素和](/copypasta/treap_kthsum.go)
   - [伸展树 splay.go](/copypasta/splay.go)
   - [动态树 LCT link_cut_tree.go](/copypasta/link_cut_tree.go)
   - [红黑树 red_black_tree.go](/copypasta/red_black_tree.go)
@@ -201,8 +206,13 @@
     - 树上最小支配集
     - 树上最大匹配
     - 换根 DP（二次扫描法）
+      - 简单写法
+      - 维护最大次大写法
+      - 前后缀分解写法（适用性最广）
 - [图论 graph.go](/copypasta/graph.go)
   - 链式前向星
+  - DFS 常用技巧
+  - BFS 常用技巧
   - 欧拉回路和欧拉路径
     - 无向图
     - 有向图
@@ -293,15 +303,33 @@
     - 模拟退火
   - [基础算法 common.go](/copypasta/common.go)
     - 算法思路整理
+    - 分组循环
     - 滑动窗口
     - 前缀和
     - 二维前缀和
+    - 同余前缀和
+    - 斜向前缀和
+      - 菱形边界和
+    - 等腰直角三角形区域和
+      - 金字塔区域和
+      - 菱形区域和
+    - 二阶差分
     - 二维差分
     - 离散化
   - [杂项 misc.go](/copypasta/misc.go)
 - [快速输入输出模板 io.go](/copypasta/io.go)
 
-欢迎关注 bilibili[@灵茶山艾府](https://space.bilibili.com/206214)，高质量算法教学，持续输出中！
+## 分类题单
+
+- [滑动窗口（定长/不定长/多指针）](https://leetcode.cn/circle/discuss/0viNMK/)
+- [二分算法（二分答案/最小化最大值/最大化最小值/第K小）](https://leetcode.cn/circle/discuss/SqopEo/)
+- [单调栈（矩形系列/字典序最小/贡献法）](https://leetcode.cn/circle/discuss/9oZFK9/)
+- [网格图（DFS/BFS/综合应用）](https://leetcode.cn/circle/discuss/YiXPXW/)
+- [位运算（基础/性质/拆位/试填/恒等式/贪心/脑筋急转弯）](https://leetcode.cn/circle/discuss/dHn9Vk/)
+- [图论算法（DFS/BFS/拓扑排序/最短路/最小生成树/二分图/基环树/欧拉路径）](https://leetcode.cn/circle/discuss/01LUak/)
+- 🔥[动态规划（入门/背包/状态机/划分/区间/状压/数位/数据结构优化/树形/博弈/概率期望）](https://leetcode.cn/circle/discuss/tXLS3i/)
+
+欢迎关注 [B站@灵茶山艾府](https://space.bilibili.com/206214)
 
 ## 如何选择题目 How to Choose Problems
 
@@ -321,6 +349,7 @@
 
 按人数从高到低，做 2200+ 的题目。**建议不设置难度上限**！由于按人数排序，难度分不会太高，**不设上限可以避免错过高分好题**。
 
+- [按照洛谷通过人数排序的 CF 题单](https://www.luogu.com.cn/training/465300)
 - [构造题 2200+](https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags=constructive+algorithms%2C2200-)：锻炼手玩能力。
 - [DP 2200+](https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags=dp%2C2200-)：几乎每场都有 DP。
 - [数学综合：数论、组合数学、概率期望等 2200+](https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags=combine-tags-by-or%2Ccombinatorics%2Cfft%2Cmatrices%2Cnumber+theory%2Cprobabilities%2Cchinese+remainder+theorem%2C2200-)：包含 6 个 tag。
@@ -362,6 +391,8 @@
 
 [算法竞赛入门到进阶](https://github.com/luoyongjun999/code)
 
+[《算法竞赛》配套题单](https://www.luogu.com.cn/training/441063)
+
 [OI Public Library（含国家队论文）](https://github.com/enkerewpo/OI-Public-Library)
 
 [算法竞赛 (ICPC, OI, etc) 论文，课件，文档，笔记等](https://github.com/LzyRapx/Competitive-Programming-Docs)
@@ -392,6 +423,10 @@
 
 [F0RE1GNERS 模板](https://github.com/F0RE1GNERS/template)
 
+https://github.com/hh2048/XCPC 含 jiangly 模板
+
+https://www.cnblogs.com/alex-wei/p/contents.html
+
 [【模板整合计划】目录](https://www.cnblogs.com/Xing-Ling/p/10930556.html)
 
 [算法学习笔记（目录）](https://zhuanlan.zhihu.com/p/105467597)
@@ -405,6 +440,8 @@
 [洛谷原试炼场](https://www.luogu.com.cn/paste/0id3h6on)
 
 [Links of ICPC/CCPC Contests from China](https://codeforces.com/blog/entry/84429)
+
+[AtCoder 题目分类](https://atcoder-tags.herokuapp.com/explain)
 
 ### AtCoder 版《挑战程序设计竞赛》
 
@@ -442,6 +479,8 @@ https://wcysai.github.io/
 
 https://www.luogu.com.cn/blog/Troverld/index
 
+[C++ @cache](https://codeforces.com/blog/entry/124683)
+
 ## 其他 Others
 
 My GoLand `Live Templates` and `Postfix Completion` [settings](/misc/my_goland_template)
@@ -458,9 +497,7 @@ My GoLand `Live Templates` and `Postfix Completion` [settings](/misc/my_goland_t
 
 [Wolfram|Alpha](https://www.wolframalpha.com/)
 
-[UpSolve.me](https://upsolve.me/)
-
-[Codeforces Upsolving Helper](https://codeforces-upsolving-helper.herokuapp.com/)
+[ACD Ladders](https://www.acodedaily.com/)
 
 [Contests Filter](https://codeforceshelper.herokuapp.com/contests)
 

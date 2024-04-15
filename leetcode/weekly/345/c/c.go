@@ -1,26 +1,49 @@
 package main
 
 // https://space.bilibili.com/206214
-func maxMoves(grid [][]int) (ans int) {
+func maxMoves(grid [][]int) int {
 	m, n := len(grid), len(grid[0])
-	f := make([][]int, m)
-	for i := range f {
-		f[i] = make([]int, n)
+	for _, row := range grid {
+		row[0] *= -1
 	}
-	for j := n - 2; j >= 0; j-- {
-		for i, row := range grid {
+	for j := 0; j < n-1; j++ {
+		ok := false
+		for i := 0; i < m; i++ {
+			if grid[i][j] > 0 {
+				continue
+			}
 			for k := max(i-1, 0); k < min(i+2, m); k++ {
-				if grid[k][j+1] > row[j] {
-					f[i][j] = max(f[i][j], f[k][j+1]+1)
+				if grid[k][j+1] > -grid[i][j] {
+					grid[k][j+1] *= -1
+					ok = true
 				}
 			}
 		}
+		if !ok {
+			return j
+		}
 	}
-	for _, r := range f {
-		ans = max(ans, r[0])
+	return n - 1
+}
+
+func maxMoves2(grid [][]int) (ans int) {
+	m, n := len(grid), len(grid[0])
+	var dfs func(int, int)
+	dfs = func(i, j int) {
+		ans = max(ans, j)
+		if ans == n-1 { // ans 已达到最大值
+			return
+		}
+		// 向右上/右/右下走一步
+		for k := max(i-1, 0); k < min(i+2, m); k++ {
+			if grid[k][j+1] > grid[i][j] {
+				dfs(k, j+1)
+			}
+		}
+		grid[i][j] = 0
+	}
+	for i := range grid {
+		dfs(i, 0) // 从第一列的任一单元格出发
 	}
 	return
 }
-
-func min(a, b int) int { if b < a { return b }; return a }
-func max(a, b int) int { if b > a { return b }; return a }

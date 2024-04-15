@@ -2,9 +2,10 @@ package copypasta
 
 /* 单调队列 Monotone Queue
 
-视频讲解 https://www.bilibili.com/video/BV1bM411X72E/
+视频讲解 
+https://www.bilibili.com/video/BV1bM411X72E/
 
-两张图秒懂单调队列（Python/Java/C++/Go）
+两张图秒懂单调队列
 https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/solution/liang-zhang-tu-miao-dong-dan-diao-dui-li-9fvh/
 
 需要不断维护队列的单调性，时刻保证队列元素从大到小或从小到大
@@ -19,21 +20,39 @@ https://cp-algorithms.com/data_structures/stack_queue_modification.html
 https://blog.csdn.net/weixin_43914593/article/details/105791217 算法竞赛专题解析（13）：DP优化(3)--单调队列优化
 todo https://xyzl.blog.luogu.org/DQ-OP-DP
 
-- [面试题 59-II. 队列的最大值](https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/)（单调队列模板题）
+单调队列求最值等
 - [239. 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/)
+- [LCR 184. 设计自助结算系统](https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/)
 - [1438. 绝对差不超过限制的最长连续子数组](https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) 1672
 - [2398. 预算内的最多机器人数目](https://leetcode.cn/problems/maximum-number-of-robots-within-budget/) 1917
 - [862. 和至少为 K 的最短子数组](https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/) 2307
 - [1499. 满足不等式的最大值](https://leetcode.cn/problems/max-value-of-equation/) 2456
 
-https://leetcode.cn/tag/monotonic-queue/problemset/
-
 单调队列优化 DP
+一般用来维护区间最值
+0. 前提：区间右端点变大时，左端点也在变大（同滑动窗口）
+1. 转移前，去掉队首无用数据
+2. 计算转移（直接从队首转移）
+3. 把 f[i] 插入队尾前，去掉队尾无用数据
+
+- [2944. 购买水果需要的最少金币数](https://leetcode.cn/problems/minimum-number-of-coins-for-fruits/) 1709 可以用单调队列优化到 $\mathcal{O}(n)$
+- [1696. 跳跃游戏 VI](https://leetcode.cn/problems/jump-game-vi/) 1954
 - [1425. 带限制的子序列和](https://leetcode.cn/problems/constrained-subsequence-sum/) 2032
 - [375. 猜数字大小 II](https://leetcode.cn/problems/guess-number-higher-or-lower-ii/) 可以用单调队列优化到 $\mathcal{O}(n^2)$
       https://leetcode.cn/problems/guess-number-higher-or-lower-ii/solution/cong-ji-yi-hua-sou-suo-on3-dao-dong-tai-q13g9/
 - [1687. 从仓库到码头运输箱子](https://leetcode.cn/problems/delivering-boxes-from-storage-to-ports/) 2610
-https://codeforces.com/contest/487/problem/B
+- [2945. 找到最大非递减数组的长度](https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/) 2943
+      https://www.luogu.com.cn/problem/P4954 https://www.luogu.com.cn/problem/P2300
+      https://iai.sh.cn/problem/565
+   - 反过来 https://codeforces.com/contest/1898/problem/B 1500
+https://codeforces.com/contest/1918/problem/D 1900
+https://codeforces.com/problemset/problem/487/B 2000
+https://codeforces.com/contest/940/problem/E 2000
+https://codeforces.com/problemset/problem/1237/D 2000
+https://codeforces.com/problemset/problem/1077/F2 2100
+https://www.luogu.com.cn/problem/P3594
+https://www.luogu.com.cn/problem/P3957
+https://www.luogu.com.cn/problem/P1419
 todo https://www.luogu.com.cn/problem/P2627
  http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1070
  老鼠进洞 http://codeforces.com/problemset/problem/797/F
@@ -100,7 +119,7 @@ func fixedSizeMax(a []int, fixedSize int) []int {
 	return ans
 }
 
-// 子区间长度不超过 sizeLimit 的最大子区间和
+// 子数组长度不超过 sizeLimit 的最大子数组和
 // 用单调队列维护前缀和的最小值，循环时保证单调队列对应的区间长度不超过 sizeLimit
 // https://www.acwing.com/problem/content/137/ https://ac.nowcoder.com/acm/contest/1006/D
 func maxSubSumWithLimitSize(a []int, sizeLimit int) int {
@@ -126,7 +145,7 @@ func maxSubSumWithLimitSize(a []int, sizeLimit int) int {
 // 转换成两个前缀和的差至少为 k
 // 这题的关键在于，当右端点向右（枚举）时，左端点是绝对不会向左的（因为向左肯定会比当前求出的最短长度要长）
 // 想明白这一点就可以愉快地使用单调队列了
-// LC862 https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k/
+// LC862 https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/
 func shortestSubSumAtLeastK(a []int, k int) int {
 	n := len(a)
 	ans := n + 1
@@ -226,8 +245,10 @@ func balancedPlaylist(a []int, n int) (ans []int) {
 // 输入：一个 n 行 m 列的矩阵 mat
 // 输入：高 h 宽 w 的窗口大小
 // 返回：一个 n-h+1 行 m-w+1 列的矩阵 areaMax，其中 areaMax[i][j] 表示窗口左上角位于矩阵 (i,j) 时的窗口中元素的最大值
-// 例题：HA07 理想的正方形 https://www.luogu.com.cn/problem/P2216
-// 解释：https://cdn.acwing.com/media/article/image/2021/06/29/52559_7d7b27ced8-1.png
+// https://www.luogu.com.cn/problem/P2216
+// 图解：https://cdn.acwing.com/media/article/image/2021/06/29/52559_7d7b27ced8-1.png
+// https://codeforces.com/problemset/problem/1195/E 2100
+// https://www.lanqiao.cn/problems/17002/learning/?contest_id=174
 func fixedSizeAreaMax(mat [][]int, h, w int) [][]int {
 	n, m := len(mat), len(mat[0])
 

@@ -1,6 +1,7 @@
 package testutil
 
 import (
+	"bytes"
 	"fmt"
 	"math/rand"
 	"sort"
@@ -15,16 +16,20 @@ const (
 )
 
 func NewRandGenerator() *RG {
-	return &RG{&strings.Builder{}}
+	return NewRandGeneratorWithSeed(1)
 }
 
 func NewRandGeneratorWithSeed(seed int64) *RG {
 	rand.Seed(seed)
-	return NewRandGenerator()
+	return &RG{&strings.Builder{}}
 }
 
 type RG struct {
 	sb *strings.Builder
+}
+
+func (r *RG) Clear() {
+	r.sb.Reset()
 }
 
 // for random string, see Str
@@ -428,6 +433,28 @@ func (r *RG) GraphWeightedEdges(n, m, st, minWeight, maxWeight int, directed boo
 	return
 }
 
+func (r *RG) GraphMatrix(n int, directed bool) (g [][]byte) {
+	upper := n * (n - 1) / 2
+	m := r._int(0, upper)
+	edges := r.graphEdges(n, m, 0, directed)
+	g = make([][]byte, n)
+	for i := range g {
+		g[i] = bytes.Repeat([]byte{'0'}, n)
+	}
+	for _, e := range edges {
+		g[e[0]][e[1]] = '1'
+		if !directed {
+			g[e[1]][e[0]] = '1'
+		}
+	}
+	for _, row := range g {
+		r.sb.WriteString(string(row))
+		r.NewLine()
+	}
+	return
+}
+
+// Graph Hack SPFA
 // GraphHackSPFA generates a undirected grid graph with n nodes, st-index, without self-loops and multiple edges, edge weights in range [minWeight, maxWeight]
 //
 // For example, a 10 nodes 2 row grid graph looks like this:

@@ -5,7 +5,6 @@ import (
 	"github.com/EndlessCheng/codeforces-go/main/testutil"
 	"github.com/stretchr/testify/assert"
 	"io"
-	"io/ioutil"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -41,10 +40,10 @@ func Test(t *testing.T) {
 func TestCompare(_t *testing.T) {
 	return
 	testutil.DebugTLE = 0
-
+	rg := testutil.NewRandGenerator()
 	inputGenerator := func() string {
 		//return ``
-		rg := testutil.NewRandGenerator()
+		rg.Clear()
 		rg.One() // 若不是多测则 remove
 		n := rg.Int(1, 3)
 		rg.NewLine()
@@ -64,7 +63,7 @@ func TestCompare(_t *testing.T) {
 			solve(Case)
 		}
 
-		_leftData, _ := ioutil.ReadAll(in)
+		_leftData, _ := io.ReadAll(in)
 		if _s := strings.TrimSpace(string(_leftData)); _s != "" {
 			panic("有未读入的数据：\n" + _s)
 		}
@@ -88,11 +87,10 @@ func TestCheck(_t *testing.T) {
 	return
 	assert := assert.New(_t)
 	_ = assert
-
 	testutil.DebugTLE = 0
-
+	rg := testutil.NewRandGenerator()
 	inputGenerator := func() (string, testutil.OutputChecker) {
-		rg := testutil.NewRandGenerator()
+		rg.Clear()
 		rg.One() // 若不是多测则 remove
 		n := rg.Int(1, 5)
 		rg.NewLine()
@@ -115,8 +113,7 @@ func TestCheck(_t *testing.T) {
 		}
 	}
 
-	target := 0
-	testutil.CheckRunResultsInfWithTarget(_t, inputGenerator, target, run)
+	testutil.CheckRunResultsInfWithTarget(_t, inputGenerator, 0, run)
 
 	//runHack := func(in io.Reader, out io.Writer) { }
 	//testutil.CheckRunResultsInf(_t, inputGenerator, runHack)
@@ -125,9 +122,9 @@ func TestCheck(_t *testing.T) {
 func TestRE(_t *testing.T) {
 	return
 	testutil.DebugTLE = 0
-
+	rg := testutil.NewRandGenerator()
 	inputGenerator := func() (string, testutil.OutputChecker) {
-		rg := testutil.NewRandGenerator()
+		rg.Clear()
 		rg.One() // 若不是多测则 remove
 		n := rg.Int(1, 5)
 		rg.NewLine()

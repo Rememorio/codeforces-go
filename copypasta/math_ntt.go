@@ -34,6 +34,7 @@ A modulo multiplication method that is 2x faster than compiler implementation ht
 【推荐】https://www.luogu.com.cn/blog/command-block/ntt-yu-duo-xiang-shi-quan-jia-tong
 https://blog.orzsiyuan.com/search/%E5%A4%9A%E9%A1%B9%E5%BC%8F/2/
 模板 https://blog.orzsiyuan.com/archives/Polynomial-Template/
+jiangly 模板 https://atcoder.jp/contests/arc163/submissions/45737810
 https://blog.csdn.net/weixin_43973966/article/details/88996932
 https://cp-algorithms.com/algebra/polynomial.html
 http://blog.miskcoo.com/2015/05/polynomial-inverse
@@ -59,16 +60,17 @@ https://atcoder.jp/contests/abc267/tasks/abc267_h
 
 /* GF: generating function 生成函数/母函数/多项式计数
 https://en.wikipedia.org/wiki/Generating_function
+todo generatingfunctionology https://www2.math.upenn.edu/~wilf/gfologyLinked2.pdf
 
 普通生成函数 OGF
-指数生成函数 EGF
+指数生成函数 EGF 入门题 https://codeforces.com/problemset/problem/891/E 3000
 狄利克雷生成函数 DGFs
 todo 【推荐】https://www.luogu.com.cn/blog/command-block/sheng-cheng-han-shuo-za-tan
  【推荐】数数入门 https://www.luogu.com.cn/blog/CJL/conut-ru-men
  https://www.bilibili.com/video/BV1Zg411T7Eq
 https://oi-wiki.org/math/gen-func/intro/
 OGF 展开方式 https://oi-wiki.org/math/gen-func/ogf/#_5
-【数学理论】浅谈 OI 中常用的一些生成函数运算的合法与正确性 https://rqy.moe/Math/gf_correct/
+【数学理论】浅谈 OI 中常用的一些生成函数运算的合法与正确性 https://rqy.moe/Math/gf_correct/ https://www.luogu.com.cn/blog/lx-2003/gf-correct
 一些常见数列的生成函数推导 https://www.luogu.com.cn/blog/nederland/girl-friend
 狄利克雷相关（含 DGFs）https://www.luogu.com.cn/blog/command-block/gcd-juan-ji-xiao-ji
 狄利克雷生成函数浅谈 https://www.luogu.com.cn/blog/gxy001/di-li-ke-lei-sheng-cheng-han-shuo-qian-tan
@@ -79,6 +81,7 @@ A problem collection of ODE and differential technique https://codeforces.com/bl
 Optimal Algorithm on Polynomial Composite Set Power Series https://codeforces.com/blog/entry/92183
 On linear recurrences and the math behind them https://codeforces.com/blog/entry/100158
 载谭 Binomial Sum：多项式复合、插值与泰勒展开 https://www.luogu.com.cn/blog/EntropyIncreaser/zai-tan-binomial-sum-duo-xiang-shi-fu-ge-cha-zhi-yu-tai-lei-zhan-kai
+How to composite (some) polynomials faster? https://codeforces.com/blog/entry/126124
 
 炫酷反演魔术 https://www.luogu.com.cn/blog/command-block/xuan-ku-fan-yan-mo-shu
 反演魔术：反演原理及二项式反演 http://blog.miskcoo.com/2015/12/inversion-magic-binomial-inversion
@@ -183,7 +186,8 @@ func (a poly) resize(n int) poly {
 }
 
 // 计算 A(x) 和 B(x) 的卷积 (convolution)
-// c[i] = ∑a[k]*b[i-k], k=0..i
+// c[k] = ∑a[i]*b[k-i], i=0..k
+// 如果求 ∑a[i]*b[i]，可以把 b 反转后再求卷积
 // 入参出参都是次项从低到高的系数
 // 模板题 https://judge.yosupo.jp/problem/convolution_mod
 //       https://www.luogu.com.cn/problem/P3803

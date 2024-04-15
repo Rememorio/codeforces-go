@@ -14,6 +14,7 @@ https://en.wikipedia.org/wiki/Treap
 复杂度证明 http://www.cs.cmu.edu/afs/cs/academic/class/15210-s12/www/lectures/lecture16.pdf
 部分代码参考刘汝佳实现，见 https://github.com/klb3713/aoapc-book/blob/master/TrainingGuide/bookcodes/ch3/la5031.cpp
 额外维护子树和的写法见 https://codeforces.com/contest/1398/submission/119651187
+todo Merging treaps https://codeforces.com/blog/entry/108601
 
 模板题 https://www.luogu.com.cn/problem/P3369 https://www.luogu.com.cn/problem/P6136
 题目推荐 https://cp-algorithms.com/data_structures/treap.html#toc-tgt-8
@@ -91,7 +92,7 @@ func newTreap() *treap {
 
 // https://www.jstatsoft.org/article/view/v008i14/xorshift.pdf
 // https://en.wikipedia.org/wiki/Xorshift
-// 当然，也可以用 rand.Int() 或者 rd: rand.NewSource 后 rd.Int63()，后者速度略慢于 fastRand
+// 任何 Go 版本都通用的写法
 func (t *treap) fastRand() uint {
 	t.rd ^= t.rd << 13
 	t.rd ^= t.rd >> 17

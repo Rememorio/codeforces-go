@@ -15,12 +15,25 @@ https://en.wikipedia.org/wiki/Binomial_theorem
 https://en.wikipedia.org/wiki/Pigeonhole_principle
 https://codeforces.com/problemset/problem/618/F
 
+简单计数
+https://codeforces.com/problemset/problem/617/B 1300
+
 一些组合问题
 没有思路的话可以尝试：
 - 打表 + OEIS
 - 用 DP 推导，然后尝试优化
 - 假设法
+- [1359. 有效的快递序列数目](https://leetcode.cn/problems/count-all-valid-pickup-and-delivery-options/) 1723
+LC2514 https://leetcode.cn/problems/count-anagrams/ 2070
+- [1643. 第 K 条最小指令](https://leetcode.cn/problems/kth-smallest-instructions/) 2080
+LC2842 https://leetcode.cn/problems/count-k-subsequences-of-a-string-with-maximum-beauty/ 2092
+LC1916 https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/ 2486
+LC2954 https://leetcode.cn/problems/count-the-number-of-infection-sequences/ 2645
+LC2539 https://leetcode.cn/problems/count-the-number-of-good-subsequences/（会员题）
+- [LCP 25. 古董键盘](https://leetcode.cn/problems/Uh984O/)
+另见下面的「放球问题」
 入门 https://atcoder.jp/contests/abc202/tasks/abc202_d
+https://codeforces.com/problemset/problem/1236/B 1500
 https://codeforces.com/problemset/problem/1391/C 1500
 https://codeforces.com/problemset/problem/213/B
 https://codeforces.com/problemset/problem/300/C
@@ -32,6 +45,7 @@ https://codeforces.com/problemset/problem/1261/D2 推荐
 https://codeforces.com/problemset/problem/1288/C
 https://codeforces.com/problemset/problem/1342/E
 https://codeforces.com/problemset/problem/1359/E
+https://codeforces.com/contest/1931/problem/G
 https://codeforces.com/problemset/problem/1761/D https://www.luogu.com.cn/blog/linyihdfj/solution-cf1761d https://www.cnblogs.com/linyihdfj/p/16893607.html
 https://codeforces.com/problemset/problem/1763/D 推荐 分类讨论
 https://atcoder.jp/contests/abc171/tasks/abc171_f 推荐 巧妙去重
@@ -39,14 +53,13 @@ https://atcoder.jp/contests/abc171/tasks/abc171_f 推荐 巧妙去重
 - 把子序列改成子串 https://oj.socoding.cn/p/1446 https://leetcode.cn/problems/find-all-good-strings/
 - https://github.com/tdzl2003/leetcode_live/blob/master/socoding/1446.md
 https://atcoder.jp/contests/abc290/tasks/abc290_f
-LC2842 https://leetcode.cn/problems/count-k-subsequences-of-a-string-with-maximum-beauty/
-LC2514 https://leetcode.cn/problems/count-anagrams/
-LC2539 https://leetcode.cn/problems/count-the-number-of-good-subsequences/
+todo https://www.luogu.com.cn/problem/P6017
 
 差分、前缀和与组合数
 https://codeforces.com/contest/1832/problem/E
 
-放球问题
+## 放球问题
+视频讲解：https://www.bilibili.com/video/BV1p6421g736/
 最基础的问题，把 n 个无区别的球放入 m 个有区别的盒子中，不允许空盒（n>=m）：
 - 解答：考虑用 m-1 个隔板隔开这些球，这些球之间有 n-1 个位置可以放置隔板，所以方案数为 C(n-1,m-1)
 变形：允许空盒
@@ -55,6 +68,11 @@ https://baike.baidu.com/item/%E6%94%BE%E7%90%83%E9%97%AE%E9%A2%98
 https://www.luogu.com.cn/blog/over-knee-socks/post-ball-box
 https://www.cnblogs.com/Xing-Ling/p/11176939.html
 https://blog.csdn.net/weixin_33759269/article/details/86017932
+- [1641. 统计字典序元音字符串的数目](https://leetcode.cn/problems/count-sorted-vowel-strings/) 1519
+- [1621. 大小为 K 的不重叠线段的数目](https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/) 2198
+- [1735. 生成乘积数组的方案数](https://leetcode.cn/problems/count-ways-to-make-array-with-product/) 2500
+- [2338. 统计理想数组的数目](https://leetcode.cn/problems/count-the-number-of-ideal-arrays/) 2615
+https://codeforces.com/contest/1931/problem/G 2000
 扩展例题 https://codeforces.com/problemset/problem/893/E
 todo 十二重计数法 https://www.luogu.com.cn/problem/P5824
 
@@ -96,7 +114,9 @@ a(n) = 长度为 n 的字符串的所有子串长度之和
 todo 可重集排列组合 https://oi-wiki.org/math/combination/
 todo https://codeforces.com/problemset/problem/451/E
 不相邻的排列 https://oi-wiki.org/math/combination/#_10
-错排 https://oeis.org/A000166 subfactorial numbers  a[n]=(n-1)*(a[n-1]+a[n-2])  https://zh.wikipedia.org/wiki/%E9%94%99%E6%8E%92%E9%97%AE%E9%A2%98
+错排 https://oeis.org/A000166 subfactorial numbers  a[0]=1, a[1]=0, a[n]=(n-1)*(a[n-1]+a[n-2])
+- [634. 寻找数组的错位排列](https://leetcode.cn/problems/find-the-derangement-of-an-array/)（会员题）
+https://zh.wikipedia.org/wiki/%E9%94%99%E6%8E%92%E9%97%AE%E9%A2%98
 	https://oeis.org/A082491 n! * A000166(n)   a(n+2) = (n+2)*(n+1)*(a(n+1)+(n+1)*a(n))
 	https://oeis.org/A000255 错排的比较对象的范围是 [1,n+1]  a(n) = n*a(n-1) + (n-1)*a(n-2), a(0) = a(1) = 1
 	https://oeis.org/A000153 错排的比较对象的范围是 [1,n+2]  a(n) = n*a(n-1) + (n-2)*a(n-2), a(0) = 0, a(1) = 1
@@ -104,8 +124,13 @@ todo https://codeforces.com/problemset/problem/451/E
 	https://oeis.org/A001909 错排的比较对象的范围是 [1,n+4]  a(n) = n*a(n-1) + (n-4)*a(n-2), a(2) = 0, a(3) = 1
 		https://atcoder.jp/contests/abc172/tasks/abc172_e
     https://oeis.org/A127548 和两个排列都不同的错排数（这两个排列也互为错排）
+https://www.luogu.com.cn/problem/P4071
 圆排列 https://zh.wikipedia.org/wiki/%E5%9C%86%E6%8E%92%E5%88%97
     Q(n,n) = (n-1)!
+
+Gaussian binomial coefficient
+https://en.wikipedia.org/wiki/Gaussian_binomial_coefficient
+https://codeforces.com/contest/1916/problem/H2
 
 https://oeis.org/A000522 Total number of arrangements of a set with n elements: a(n) = Sum_{k=0..n} n!/k!    Total number of permutations of all subsets of an n-set
                           a(n) = n*a(n-1) + 1, a(0) = 1
@@ -139,6 +164,7 @@ https://oeis.org/A069283 将 n 分拆成至少两个连续整数的方法数 = n
 https://oeis.org/A018819 Binary partition function: number of partitions of n into powers of 2
 	相关题目 https://www.luogu.com.cn/problem/P6065 http://poj.org/problem?id=2229
 https://oeis.org/A000740 将 n 分拆成若干互质整数的方法数 a(n) = sum_{d|n} mu(n/d)*2^(d-1)
+严格递增 https://oeis.org/A000009 Number of partitions of n into distinct parts    number of partitions of n into odd parts
 
 华林问题 Waring's problem
 https://en.wikipedia.org/wiki/Waring%27s_problem
@@ -215,7 +241,7 @@ n married couples are seated in a row so that every wife is to the left of her h
 考虑顺序可以发现，对于每一对夫妻来说，妻子在丈夫左侧的情况和在右侧的情况相同且不同对夫妻之间是独立的
 因此每有一对夫妻，符合条件的排列个数就减半
 所以结果为 a(n) = (2n)!/2^n https://oeis.org/A000680
-或者见这道题目的背景 LC1359 https://leetcode-cn.com/problems/count-all-valid-pickup-and-delivery-options/
+或者见这道题目的背景 LC1359 https://leetcode.cn/problems/count-all-valid-pickup-and-delivery-options/
 
 NxN 大小的对称置换矩阵的个数 https://oeis.org/A000085
 这里的对称指仅关于主对角线对称
@@ -232,7 +258,7 @@ The number of 3 X n matrices of integers for which the upper-left hand corner is
 the rows and columns are weakly increasing, and two adjacent entries differ by at most 1
 a(n+2) = 5*a(n+1) - 2*a(n), with a(0) = 1, a(1) = 4
 https://oeis.org/A052913
-相关题目 LC1411 https://leetcode-cn.com/problems/number-of-ways-to-paint-n-x-3-grid/
+相关题目 LC1411 https://leetcode.cn/problems/number-of-ways-to-paint-n-x-3-grid/
 
 男厕问题 / 电话问题 https://oeis.org/A185456
 Assume that the first person to use a bank of payphones selects one at the end,
@@ -345,6 +371,8 @@ func (c *comb) c(n, k int) int {
 // 与 SOS DP 结合 https://codeforces.com/problemset/problem/449/D
 // 用因子容斥 https://codeforces.com/problemset/problem/900/D
 // todo https://www.luogu.com.cn/problem/P1450
+// 辅助思考 DP https://atcoder.jp/contests/arc115/tasks/arc115_e 
+//            https://codeforces.com/contest/1591/problem/F
 func solveInclusionExclusion(a []int) (ans int) {
 	for sub := uint(0); sub < 1<<len(a); sub++ {
 		res := 0
@@ -363,3 +391,9 @@ func solveInclusionExclusion(a []int) (ans int) {
 	ans = (ans%mod + mod) % mod
 	return
 }
+
+/* min-max 反演
+https://www.luogu.com.cn/blog/meizhuhe/min-max-fan-yan-xue-xi-bi-ji
+https://www.zhihu.com/question/630790586/answer/3297271864
+https://uoj.ac/problem/449
+*/
